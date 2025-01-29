@@ -1,0 +1,12 @@
+{
+  "name": "my-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspace nextjs dev",
+    "test:e2e": "yarn workspace playwright-tests test",
+    "start:runner": "yarn workspace typescript-runner start"
+  }
+}
