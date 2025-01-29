@@ -25,5 +25,6 @@ yarn test:e2e
 ### Run the TypeScript runner cli utility
 
 ```bash
+yarn start:runner greet John
 
 ```
