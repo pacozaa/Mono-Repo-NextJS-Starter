@@ -8,6 +8,7 @@
     "dev": "yarn workspace nextjs dev",
     "test:nextjs:backend": "yarn workspace nextjs test:coverage",
     "test:e2e": "yarn workspace playwright-tests test",
+    "test:e2e:report":"yarn workspace playwright-tests playwright show-report",
     "start:runner": "yarn workspace typescript-runner dev"
   },
   "license": "MIT"

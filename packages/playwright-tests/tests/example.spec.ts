@@ -31,7 +31,7 @@ test.describe('Page 1', () => {
 
   test("displays correct title", async ({ page }) => {
     await page.goto("/page1");
-    const title = page.getByText("Page 1");
+    const title = page.getByRole("main").getByText("Page 1", { exact: true });
     await expect(title).toBeVisible();
   });
 
@@ -51,7 +51,7 @@ test.describe('Page 2', () => {
 
   test("displays correct title", async ({ page }) => {
     await page.goto("/page2");
-    const title = page.getByText("Page 2");
+    const title = page.getByRole("main").getByText("Page 2", { exact: true });
     await expect(title).toBeVisible();
   });
 
