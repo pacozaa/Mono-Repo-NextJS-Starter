@@ -1,6 +1,6 @@
 # Mono Repo NextJS
 
-This is a monorepo setup using yarn workspaces. It contains a NextJS app, Playwright e2e and a TypeScript runner.
+This is a monorepo setup using yarn workspaces. It contains a [NextJS app](packages/nextjs), [Playwright e2e](packages/playwright-tests) and a [TypeScript runner](packages/typescript-runner).
 
 ## Getting Started
 
