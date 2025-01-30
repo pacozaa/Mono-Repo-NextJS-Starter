@@ -14,22 +14,23 @@ describe("/api/helloworld", () => {
     expect(data).toEqual({ message: "Hello from the API!" });
   });
 
-  // Test error scenarios
-  //   it("should handle internal server errors", async () => {
-  //     // Mock implementation to simulate error
-  //     jest
-  //       .spyOn(global, "fetch")
-  //       .mockImplementationOnce(() =>
-  //         Promise.reject(new Error("Internal Server Error"))
-  //       );
+  //TODO: Fix this test
+  it("should handle internal server errors", async () => {
+    // Mock the entire GET function to throw an error
+    jest.spyOn(global, "Promise").mockImplementationOnce(() => {
+      throw new Error("Internal Server Error");
+    });
 
-  //     const req = new NextRequest("http://localhost:3000/api/helloworld", {
-  //       method: "GET",
-  //     });
+    const req = new NextRequest("http://localhost:3000/api/helloworld", {
+      method: "GET",
+    });
 
-  //     const response = await GET(req);
-  //     expect(response.status).toBe(500);
-  //   });
+    const response = await GET(req);
+    const data = await response.json();
+
+    expect(response.status).toBe(500);
+    expect(data).toEqual({ error: "Internal Server Error" });
+  });
 
   // Test with different query parameters
   it("should handle query parameters", async () => {
