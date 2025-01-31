@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { prisma } from '@/lib/prisma'
+import { Memory } from "@/types/memory"
 
 export const metadata: Metadata = {
   title: "Memories List",
@@ -9,12 +10,24 @@ export const metadata: Metadata = {
 }
 
 async function getMemories() {
-  const memories = await prisma.memories.findMany({
-    orderBy: {
-      createdAt: 'desc'
+  try{
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/memories/list`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+  
+    if (!response.ok) {
+      throw new Error("Failed to fetch memories")
     }
-  })
-  return memories
+  
+    const memories: Memory[] = await response.json()
+    return memories
+  }catch(error){
+    return []
+  }
+  
 }
 
 export default async function MemoriesPage() {
