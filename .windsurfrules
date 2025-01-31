@@ -1,0 +1,92 @@
+
+## General
+
+This monorepo, managed with yarn workspaces, encompasses three main packages:
+
+1. [NextJS app](packages/nextjs): A React-based web application
+2. [Playwright e2e](packages/playwright-tests): End-to-end testing suite
+3. [TypeScript runner](packages/typescript-runner): CLI utility for TypeScript execution
+
+### Key Development Guidelines
+
+- Use TypeScript exclusively over JavaScript
+- Employ yarn as the package manager, avoiding npm
+- Frontend development utilizes the shadcn component library and TailwindCSS for styling
+
+### Workspace Scripts
+
+The root `package.json` includes the following workspace scripts:
+
+```json
+"scripts": {
+  "dev": "yarn workspace nextjs dev",
+  "test:nextjs:backend": "yarn workspace nextjs test:coverage",
+  "test:e2e": "yarn workspace playwright-tests test",
+  "start:runner": "yarn workspace typescript-runner dev"
+}
+```
+
+### NextJS App Structure
+
+The [NextJS app](packages/nextjs) follows a specific folder structure:
+
+```
+packages/nextjs/
+├── src/
+│   ├── app/
+│   └── components/
+└── ...
+```
+
+This structure places the `app` and `components` directories within a `src` folder, adhering to Next.js 13+ conventions.
+
+## Folder Information
+
+When I run `tree -L 2 -I "node_modules"`
+Here is the result:
+```
+README.md
+├── docs
+│   ├── PRISMA_Guide.md
+│   └── SETUP_POSTGRESQL_DOCKER_LOCALLY.md
+├── package-lock.json
+├── package.json
+├── packages
+│   ├── nextjs
+│   ├── playwright-tests
+│   └── typescript-runner
+└── yarn.lock
+```
+
+When I run `cd packages/nextjs && tree -L 1`
+Here is the result:
+```
+├── DEVELOPMENT_GUIDE.md
+├── README.md
+├── components.json
+├── coverage
+├── eslint.config.mjs
+├── jest.config.js
+├── jest.setup.js
+├── next-env.d.ts
+├── next.config.ts
+├── node_modules
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prisma
+├── public
+├── src
+├── tailwind.config.ts
+├── tsconfig.json
+└── yarn-error.log
+```
+
+When I run `cd packages/nextjs/src && tree -L 1`
+Here is the result:
+```
+├── app
+├── components
+├── lib
+└── types
+```
